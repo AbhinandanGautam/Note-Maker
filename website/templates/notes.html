@@ -1,0 +1,68 @@
+{% extends 'base.html' %} {% block title %} Notes {% endblock title %}
+{% block search_nav %}
+<!-- <form class="d-flex">
+  <input
+    class="form-control me-2"
+    type="search"
+    placeholder="Search (Enter Title)"
+    aria-label="Search"
+  />
+  <button class="btn btn-outline-success" type="submit">
+    Search
+  </button> -->
+{% endblock search_nav %}
+{% block
+body %}
+<div class="container my-2" id="fill_up_form">
+  <h2 align="center">Notes</h2>
+  <form method="POST">
+    <div class="mb-3">
+      <label for="title" class="form-label">Note Title</label>
+      <input type="text" class="form-control" id="title" placeholder="Enter title" name="title" />
+      <button type="button" class="btn btn-primary btn-sm" onclick="voice1()" id="speechTotitle"><i class="fa fa-microphone"></i></button>
+    </div>
+    <div class="form-group">
+      <label for="title" class="form-label">Description</label>
+      <input type="text" class="form-control" placeholder="Enter Description" name="data" id="data" />
+      <button type="button" class="btn btn-primary btn-sm" onclick="voice2()" id="speechTotext"><i class="fa fa-microphone"></i></button>
+    </div>
+    <button type="submit" class="btn btn-outline-success my-2">Submit</button>
+  </form>
+</div>
+
+<div class="container my-4">
+  <h3>Notes List</h3>
+  
+  {% if user.notes|length == 0 %}
+      <b>No Records</b>
+  {% else %}
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">SNo</th>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Date/Time</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for note in user.notes %}
+          <tr>
+            <th scope="row">{{loop.index}}</th>
+            <td>{{note.title}}</td>
+            <td>{{note.data}}</td>
+            <td>{{note.date}}</td>
+            <td>
+              <a href="/update/{{note.id}}"><button type="button" class="btn btn-outline-primary btn-sm mx-2">Update</button></a>
+              <a href="/delete/{{note.id}}"><button type="button" class="btn btn-outline-danger btn-sm mx-2">Delete</button></a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+  {% endif %}
+</div>
+
+
+{% endblock body %}

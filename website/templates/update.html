@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Update Note{% endblock title %}
+{% block body %}
+
+    <div class="container my-4">
+      <h3>Update Note</h3>
+      <form method="POST">
+        <div class="mb-3">
+          <label for="title" class="form-label">New Note Title</label>
+          <input type="text" class="form-control" id="title" name="title"/>
+        </div>
+        <div class="mb-3">
+          <label for="desc" class="form-label">New Description</label>
+          <input type="text" class="form-control" name="data" id="data" />
+        </div>
+        <button type="submit" class="btn btn-outline-success">Update</button>
+      </form>
+    </div>
+
+{% endblock body %}
